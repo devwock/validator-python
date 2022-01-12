@@ -27,8 +27,8 @@ class CrnValidator(BaseValidator):
 
         verification_value += int(int(crn_values[-1]) * cls._VERIFICATION_CODE[-1] / 10)
         verification_value %= 10
-        verification_value = 10 - verification_value
-        verification_value %= 10
+        verification_value = verification_value if verification_value == 0 else 10 - verification_value
+        
         if verification_value != int(crn[-1]):
             return False
 
